@@ -1,0 +1,27 @@
+
+
+#filter{
+font-weight: 100;
+width: 180px;
+}
+
+#files{
+width: 180px;
+background: #d7ebf9;
+overflow-y: scroll;
+overflow-x: hidden;
+}
+
+#files ul{
+margin:0; padding:0px;
+}
+
+#files ul li{
+margin:0; padding:5px;
+font-weight: normal;
+}
+
+#files ul li:hover{
+font-weight: bold;
+background: white;
+}

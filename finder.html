@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1"/>
+  <title>SIGE ::Recherche de croquis</title>
+  <link rel="stylesheet" href="lib/jquery-ui-1.10.4.custom/css/jquerytheme/jquery-ui-1.10.4.custom.min.css">
+  <link rel="stylesheet" href="lib/jquery.selectBoxIt.js/src/stylesheets/jquery.selectBoxIt.css">
+  <link rel="stylesheet" href="css/style.css">
+    
+  <script src="lib/jquery-2.1.0.min.js"></script>
+  <script src="lib/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js"></script>
+  <script src="lib/jquery.selectBoxIt.js/src/javascripts/jquery.selectBoxIt.min.js"></script>
+  
+  <script src="js/listecroquis.js"></script>
+
+  <script>
+  // PDF // Image
+$(function() {
+	$( "#format" ).buttonset();
+	});
+// commune
+$(function() {   
+	var selectBox = $("select#commune").selectBoxIt({ theme: "jqueryui" });
+	});
+// filter
+/*$(function() {
+	$( "#filter" ).button() .css({
+          'font' : 'inherit',
+         'color' : 'inherit',
+    'text-align' : 'left',
+       'outline' : 'none',
+        'cursor' : 'text'
+  });
+	});*/
+// reload file list
+
+ $(function() {
+    $("select#commune").change(function() {listeCroquis();});
+    $("input[name=radioformat]").change(function() {listeCroquis();});
+    $("input#filter").bind("change paste keyup", function() {listeCroquis();});
+    $("#filter").click(function() { if ( $("#filter").val() == "Recherche..."){$("#filter").val("");} });
+});
+	
+// Size content
+$(document).ready(sizeContent);
+$(document).ready(listeCroquis);
+$(window).resize(sizeContent);	
+
+function sizeContent(){
+  $("#files").height( $(window).height() - 210 );
+}
+
+	
+</script> 
+  
+</head>
+<body>
+ 
+<form id="croquisform">
+  <div id="format">
+    <input type="radio" id="pdf" value="pdf"  name="radioformat"><label for="pdf">Imprimer</label>
+    <input type="radio" id="img" value="img" name="radioformat" checked="checked"><label for="img">Voir</label>
+  </div>
+</form>
+ 
+<br>
+ 
+<select id="commune">
+<option value="82">Blonay (82)</option>
+<option value="84">Chardonne (84)</option>
+<option value="81">Corseaux (81)</option>
+<option value="80">Corsier (80)</option>
+<option value="88">Jongny (88)</option>
+<option value="51">Montreux (51)</option>
+<option value="43">Port-Valais (43)</option>
+<option value="60">La Tour-de-Peilz (60)</option>
+<option value="71">Vevey (71)</option>
+<option value="50">Veytaux (50)</option>
+</select>
+
+<br>
+<br>
+
+<input type="text" id="filter" class="ui-widget ui-state-default ui-corner-all" value="Recherche...">
+
+</form>
+
+<br>
+<br>
+
+<div id="files" class="ui-widget ui-state-default ui-corner-all">
+</div>
+
+</body>
+</html>
